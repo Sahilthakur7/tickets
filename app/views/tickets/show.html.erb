@@ -5,10 +5,13 @@
 
     <header>
         <h2><%= @ticket.name %></h2>
+
+        <ul class="actions">
+            <li><%= link_to "Edit Ticket", [:edit, @project, @ticket], class: "edit"%>
+            </li>
     </header>
 
     <%= simple_format(@ticket.description)%>
 </div>
-
 
 
