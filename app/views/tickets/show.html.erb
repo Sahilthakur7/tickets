@@ -9,6 +9,8 @@
         <ul class="actions">
             <li><%= link_to "Edit Ticket", [:edit, @project, @ticket], class: "edit"%>
             </li>
+            <li><%= link_to "Delete Ticket", [@project, @ticket], method: :delete, data: {confirm: "Are you really sure?"}, class: "delete"%></li>
+            </ul>
     </header>
 
     <%= simple_format(@ticket.description)%>
