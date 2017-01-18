@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
   root 'application#index'
+
+  resources :projects, only: [:new, :create, :destroy]
   end
 
   devise_for :users
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
 root "projects#index"
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-resources :projects do
+resources :projects , only: [:index, :show, :edit, :update] do
     resources :tickets
 end
   # Example resource route (maps HTTP verbs to controller actions automatically):
