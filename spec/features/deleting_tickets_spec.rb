@@ -11,6 +11,8 @@ RSpec.feature "Users can delete tickets" do
 
     login_as(FactoryGirl.create(:user,:admin))
 
+    assign_role!(author, :viewer, project)
+
     end
 
     scenario "successfully" do

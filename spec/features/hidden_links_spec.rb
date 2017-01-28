@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.feature "Users can only see the appropriate links" do
     let(:user) { FactoryGirl.create(:user) }
     let(:admin) { FactoryGirl.create(:user, :admin) }
+    let(:project) { FactoryGirl.create(:project) }
 
     context "anonymous users" do
         scenario "cannot see new project link" do
@@ -11,9 +12,12 @@ RSpec.feature "Users can only see the appropriate links" do
         end
     end
 
-    context "regular users" do
+    context "non-admin users (project viewers)" do
+        before do
+            login_as(user)
+            assign_role!(user, :viewer, project)
+        end
 
-        before { login_as(user) }
     scenario "cannot see new project link" do
             visit "/"
             expect(page).not_to have_link "New Project"
