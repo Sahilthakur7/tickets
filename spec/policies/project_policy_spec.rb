@@ -63,7 +63,29 @@ describe ProjectPolicy do
   end
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
+      let(:user) { FactoryGirl.create :user }
+      let(:project) { FactoryGirl.create :project }
+
+      it "blocks anonymous users" do
+          expect(subject).not_to permit(nil,project)
+
+      end
+
+      it "doesnt allow viewers to edit" do
+          assign_role!(user, :viewer, project)
+          expect(subject).not_to permit(user, project)
+
+      end
+
+      it "allows managers of the project to" do
+          assign_role!(user, :manager, project)
+          expect(subject).to permit(user, project)
+      end
+
+      it "allows admins to" do
+          admin = FactoryGirl.create :user,:admin
+          expect(subject).to permit(admin,project)
+      end
   end
 
   permissions :destroy? do
