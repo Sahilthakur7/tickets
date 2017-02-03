@@ -1,8 +1,9 @@
 class Admin::UsersController < Admin::ApplicationController
 before_action :set_user, only: [:show,:edit,:update,:destroy, :archive]
-
+before_action :set_projects, only: [:new, :create, :edit, :update]
   def index
       @users = User.excluding_archived.order(:email)
+      
   end
 
   def show
@@ -45,12 +46,24 @@ before_action :set_user, only: [:show,:edit,:update,:destroy, :archive]
           params[:user].delete(:password)
       end
 
+      User.transaction do
+          @user.roles.clear
+          role_data = params.fetch(:roles, [])
+          role_data.each do |project_id, role_name|
+              if role_name.present?
+                  @user.roles.build(project_id: project_id, role: role_name)
+              end
+      end
+      end
+
+
       if @user.update(user_params)
           flash[:notice] = "User has been updated"
           redirect_to admin_users_path
       else
           flash.now[:alert] = "User has not been updated"
           render "edit"
+          raise ActiveRecord::Rollback
       end
 
   end
@@ -63,5 +76,10 @@ before_action :set_user, only: [:show,:edit,:update,:destroy, :archive]
     def set_user
         @user = User.find(params[:id])
     end
+
+    def set_projects 
+        @projects = Project.order(:name)
+    end
+
 
 end

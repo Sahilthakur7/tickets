@@ -16,7 +16,7 @@ unless User.exists?(email: "viewer@ticketee.com")
     User.create!(email: "viewer@ticketee.com", password: "password")
 end
 
-["Subllime Text 3", "Internet Explorer"].each do |name|
+["Sublime Text 3", "Internet Explorer"].each do |name|
     unless Project.exists?(name: name)
         Project.create!(name: name, description: "A sample project about #{name}")
     end

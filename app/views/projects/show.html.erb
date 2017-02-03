@@ -19,10 +19,12 @@ data: { confirm: "Are you sure you want to delete this project?"  },class: "dele
 <%end%>
 
 
-
+    <% if policy(Ticket.new(project: @project)).create? %>
     <li><%= link_to "New Ticket", new_project_ticket_path(@project),
         class: "new" %></li>
+<%end%>
     </ul>
+
 
 <ul id="tickets">
     <% @project.tickets.each do |ticket|%>
