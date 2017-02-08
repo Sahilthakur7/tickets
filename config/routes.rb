@@ -28,6 +28,8 @@ root "projects#index"
 resources :projects , only: [:index, :show, :edit, :update] do
     resources :tickets
 end
+
+resources :attachments, only: [:show]
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
