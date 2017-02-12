@@ -29,6 +29,10 @@ resources :projects , only: [:index, :show, :edit, :update] do
     resources :tickets
 end
 
+resources :tickets, only: [] do
+    resources :comments, only: [:create]
+end
+
 resources :attachments, only: [:show, :new]
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

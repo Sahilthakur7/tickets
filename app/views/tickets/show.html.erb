@@ -5,7 +5,7 @@
 
     <header>
         <h2><%= @ticket.name %></h2>
-        </header>
+    </header>
 
         <ul class="actions">
             <table id="attributes">
@@ -21,9 +21,9 @@
             </li>
             <li><%= link_to "Delete Ticket", [@project, @ticket], method: :delete, data: {confirm: "Are you really sure?"}, class: "delete"%></li>
             </ul>
-
+            
     <%= simple_format(@ticket.description)%>
-
+    </br>
     <% if @ticket.attachments.any?%>
         <h4>Attachments</h4>
         <div class="attachments">
@@ -35,5 +35,25 @@
             </p>
 </div>
 <%end%>
+
+ <p> 
+    <%= link_to "Add another file", new_attachment_path, remote:true, id: "add_file", data: { params: { index: @ticket.attachments.size } }%>
+  
+    </p>
+
+
+    </br>
+<header>
+    <h3>Comments</h3>
+</header>
+
+<div id="comments">
+    <% if @ticket.comments.persisted.any?%>
+        <%= render @ticket.comments.persisted %>
+    <%else%>
+        <p>There are no comments for this ticket. </p>
+    <%end%>
+    </div>
+   <%= render "comments/form", ticket: @ticket, comment: @comment%>
 
 
