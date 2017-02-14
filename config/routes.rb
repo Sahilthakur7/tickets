@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :admin do
   root 'application#index'
 
-  resources :projects, only: [:new, :create, :destroy]
+  resources :projects, only: [:new, :create, :destroy], param: :slug
 
   resources :users do
     member do

@@ -24,7 +24,7 @@ class TicketsController < ApplicationController
 
     def show
         authorize @ticket, :show?
-        @comment = @ticket.comments.build
+        @comment = @ticket.comments.build(state_id: @ticket.state_id)
     end
    
    def edit
@@ -50,11 +50,11 @@ class TicketsController < ApplicationController
 
 
     def set_project
-        @project = Project.find(params[:project_id])
+        @project = Project.friendly.find(params[:project_id])
     end
 
     def ticket_params
-        params.require(:ticket).permit(:name,:description, attachments_attributes: [:file, :file_cache] )
+        params.require(:ticket).permit(:name,:description,:tag_names, attachments_attributes: [:file, :file_cache] )
     end
 
     def set_ticket

@@ -5,3 +5,18 @@
 blockquote.comment p {
     font-size: 14px;
 }
+
+.tag {
+
+    margin-right: 10px;
+
+    a {
+        color: white;
+
+        &.remove {
+            font-family: "FontAwesome";
+            margin-right: 0.5em;
+            text-decoration: none;
+        }
+    }
+}

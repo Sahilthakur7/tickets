@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem "pundit", "~> 0.3.0"
 
+
 gem "carrierwave", "~> 0.10.0"
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -33,6 +34,8 @@ gem "font-awesome-sass", "~> 4.7.0"
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem "devise", "~> 3.4.1"
+
+gem 'friendly_id', '~>5.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :development do

@@ -7,7 +7,7 @@ RSpec.feature "Users can create new tickets" do
         project = FactoryGirl.create(:project,name: "Internet Explorer")
         assign_role!(user, :editor , project)
 
-        visit project_path(project)
+        visit project_path(project.friendly_id)
         click_link "New Ticket"
     end
 
@@ -66,6 +66,19 @@ RSpec.feature "Users can create new tickets" do
      within("#ticket .attachments") do
          expect(page).to have_content "speed.txt"
          expect(page).to have_content "spin.txt"
+     end
+ end
+
+ scenario "with associated tags" do
+     fill_in "Name", with: "Non-standards compliance"
+     fill_in "Description", with: "My pages are ugly"
+     fill_in "Tags", with: "browser visual"
+     click_button "Create Ticket"
+
+     expect(page).to have_content "Ticket has been created"
+     within('#ticket #tags') do
+        expect(page).to have_content "browser"
+        expect(page).to have_content "visual"
      end
  end
      end
