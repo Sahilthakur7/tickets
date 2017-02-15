@@ -1,0 +1,14 @@
+@media(max-width: 767px ) {
+    input#search {
+        display: inline-block;
+        vertical-align: middle;
+        width: auto;
+    }
+}
+
+@media(max-width: 480px )
+{
+    ul.actions .form-inline {
+        padding-bottom: 5px;
+    }
+}

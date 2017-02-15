@@ -6,9 +6,19 @@ blockquote.comment p {
     font-size: 14px;
 }
 
-.tag {
+#tickets li {
+    padding-bottom: 10px;
+}
 
+.state {
+    font-size: 12px;
+    padding: 0.3em 0.6em;
+}
+
+.tag {
+    @extend .state;
     margin-right: 10px;
+    display: inline;
 
     a {
         color: white;

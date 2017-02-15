@@ -8,6 +8,12 @@ class Ticket < ActiveRecord::Base
   has_and_belongs_to_many :tags, uniq: true
   attr_accessor :tag_names
   accepts_nested_attributes_for :attachments, reject_if: :all_blank
+
+  searcher do
+      label :tag, from: :tags, field: "name"
+  end
+
+  
   validates :name, presence: true
   validates :description, presence: true
 

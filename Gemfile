@@ -36,6 +36,7 @@ gem "font-awesome-sass", "~> 4.7.0"
 gem "devise", "~> 3.4.1"
 
 gem 'friendly_id', '~>5.1'
+gem "searcher", github: "radar/searcher"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :development do

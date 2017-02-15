@@ -23,15 +23,24 @@ data: { confirm: "Are you sure you want to delete this project?"  },class: "dele
     <li><%= link_to "New Ticket", new_project_ticket_path(@project),
         class: "new" %></li>
 <%end%>
+ <li>
+        <%= form_tag search_project_tickets_path(@project), method: :get, class: "form-inline" do%>
+            <%= label_tag "search", "Search", class: "sr-only"%>
+            <%= text_field_tag "search", params[:search], class: "form-control"%>
+            <%= submit_tag "Search", class: "btn btn-default"%>
+        <%end%>
+    </li>
     </ul>
 
 
 <ul id="tickets">
-    <% @project.tickets.each do |ticket|%>
+    <%@tickets.each do |ticket|%>
         <li>
             #<%= ticket.id %>-
             <%= link_to ticket.name, [@project, ticket]%>
         </li>
     <%end%>
 </ul>
+
+
 

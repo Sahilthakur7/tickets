@@ -26,7 +26,11 @@ root "projects#index"
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 resources :projects , only: [:index, :show, :edit, :update] do
-    resources :tickets
+    resources :tickets do
+        collection do
+            get :search
+        end
+    end
 end
 
 resources :tickets, only: [] do
