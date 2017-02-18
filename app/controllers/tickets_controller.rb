@@ -64,7 +64,7 @@ class TicketsController < ApplicationController
            flash[:notice] = "You are no longer watching this"
        else
            @ticket.watchers << current_user
-           flash[:notice] = "You are now watching this"
+           flash[:notice] = "You are watching this now"
        end
        redirect_to project_ticket_path(@ticket.project, @ticket)
    end
