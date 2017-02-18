@@ -30,6 +30,13 @@
                 <td><%= render @ticket.tags, ticket: @ticket %></td>
             </tr>
         <%end%>
+
+        <th>Watchers:</th>
+        <td>
+            <%= @ticket.watchers.map(&:email).to_sentence%>
+        </td>
+        </tr>
+
         </table>
 
 
